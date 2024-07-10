@@ -14,23 +14,14 @@ function CreateBlog() {
   const [aiContent, setAiContent] = useState(false);
   const [blogContent, setBlogContent] = useState([]);
   const [blogImages, setBlogImages] = useState([]);
-  // const { GoogleGenerativeAI } = require("@google/generative-ai");
-  // const genAI = new GoogleGenerativeAI(
-  //   "AIzaSyCJCPJpOvgNFVni-9xHTkxpLxh-ZliDckg"
-  // );
-
-  // const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-  // const pexelsApiKey =
-  //   "Tlny80PImvSH01am3Ztxg8qzHndm9jLcE7qRoAcHFod6ofx0cR3n3uEC"; // Replace with your actual Pexels API key
 
   useEffect(() => {
     async function generate() {
       const jobDescription = aiTitle;
       if (jobDescription) {
         const blogPrompt = `generate a JSON object where key is "blog" and value is a 1000 words single line string about a blog on ${jobDescription} dont create paragraphs just generate a single line string no new lines`;
-        const PEXELS_API_KEY =
-          "Tlny80PImvSH01am3Ztxg8qzHndm9jLcE7qRoAcHFod6ofx0cR3n3uEC";
-        const apiKey = "AIzaSyCJCPJpOvgNFVni-9xHTkxpLxh-ZliDckg";
+        const PEXELS_API_KEY = import.meta.env.VITE_PEXELS_API_KEY;
+        const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
         const modelName = "gemini-1.5-flash";
         const fetchBlogContent = async (prompt) => {
           try {
